@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Drishtikon | Rishabh Yadav</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a237e;
+            --primary-light: #534bae;
+            --secondary: #ff4081;
+            --accent: #18ffff;
+            --light: #f5f5f5;
+            --dark: #121212;
+            --gray: #757575;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            background-color: var(--accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(rgba(26, 35, 126, 0.9), rgba(26, 35, 126, 0.8)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #ff79a9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 64, 129, 0.4);
+        }
+
+        /* Founder Section */
+        .founder-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .founder-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .founder-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .founder-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .founder-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .founder-name {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .founder-title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .founder-bio {
+            margin-bottom: 30px;
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+
+        .roles-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .role-card {
+            flex: 1;
+            min-width: 200px;
+            background-color: #f0f2ff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .role-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .role-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Company Info */
+        .company-info {
+            padding: 80px 0;
+            background-color: #f0f2ff;
+        }
+
+        .company-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .company-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .company-text h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+
+        .company-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .company-values {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .values-list {
+            list-style: none;
+        }
+
+        .values-list li {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .values-list i {
+            background-color: var(--accent);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: all 0.3s;
+        }
+        .circle-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* or use 'contain' to see entire logo */
+}
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .founder-name {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 20px;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.4s;
+            }
+
+            nav ul.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .founder-section, .company-info {
+                padding: 60px 0;
+            }
+            
+            .role-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="circle-logo">
+  <img src="/WhatsApp Image 2026-02-09 at 9.06.59 PM.jpeg" alt="Logo">
+</div>
+                <div class="logo-text"><span>Drishtikon</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="mainNav">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#founder">Founder</a></li>
+                    <li><a href="#company">Company</a></li>
+                    <li><a href="#values">Values</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Drishtikon: A Unique Perspective on Technology & Innovation</h1>
+            <p>Your degree opens doors, your skills keep them open.</p>
+            <a href="#founder" class="cta-button">Meet Our Founder</a>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder-section" id="founder">
+        <div class="container">
+            <h2 class="section-title">Meet Our Founder</h2>
+            
+            <div class="founder-container">
+                <div class="founder-image">
+                    <!-- Placeholder for founder image -->
+                    <img src="/WhatsApp Image 2026-01-10 at 7.38.26 PM.jpeg" alt="Rishabh Yadav - Founder of  Drishtikon">
+                </div>
+                
+                <div class="founder-info">
+                    <h2 class="founder-name">Rishabh Yadav</h2>
+                    <p class="founder-title">Founder & CEO of  Drishtikon</p>
+                    
+                    <p class="founder-bio">
+                        A visionary leader with a unique blend of technical expertise and digital influence. 
+                        Rishabh founded  Drishtikon with the mission to create technology solutions that 
+                        resonate with people and drive meaningful change. With over 2 years of experience 
+                        in software development and a significant following as an X-Influencer, he brings 
+                        a fresh perspective to the tech industry.
+                    </p>
+                    
+                    <div class="roles-container">
+                        <div class="role-card">
+                            <i class="fas fa-laptop-code"></i>
+                            <h3>Software Developer</h3>
+                            <p>Expert in full-stack development, AI/ML, and scalable cloud solutions</p>
+                        </div>
+                        
+                        <div class="role-card">
+                            <i class="fas fa-bullhorn"></i>
+                           <a href="https://x.com/drishtikon3171" target="_blank" class="x-link">
+        <h3>X-Influencer</h3>
+    </a>
+                            <p>Digital creator sharing tech insights on Indian Politics, World Politics, Trade & Bitcoins, blended with motivational content.</p>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-x"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Info -->
+    <section class="company-info" id="company">
+        <div class="container">
+            <h2 class="section-title">About  Drishtikon</h2>
+            
+            <div class="company-content">
+                <div class="company-text">
+                    <h2>Our Vision & Mission</h2>
+                    <p>
+                         Drishtikon, which translates to " Perspective," is a technology company 
+                        founded on the principle that diverse viewpoints drive innovation. We specialize 
+                        in creating software solutions that are not only technically excellent but also 
+                        user-centric and socially impactful.
+                    </p>
+                    <p>
+                        Under Rishabh Yadav's leadership, we combine deep technical expertise with 
+                        insights from digital culture to build products that resonate with today's 
+                        connected world. Our approach bridges the gap between cutting-edge technology 
+                        and human-centered design.
+                    </p>
+                    <p>
+                        From custom software development to digital strategy consulting, we help 
+                        businesses navigate the complex digital landscape with clarity and purpose.
+                    </p>
+                </div>
+                
+                <div class="company-values" id="values">
+                    <h2>Our Core Values</h2>
+                    <ul class="values-list">
+                        <li>
+                            <i class="fas fa-eye"></i>
+                            <div>
+                                <h3>Unique Perspective</h3>
+                                <p>We approach every challenge with fresh eyes and innovative thinking</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-code"></i>
+                            <div>
+                                <h3>Technical Excellence</h3>
+                                <p>We build robust, scalable, and maintainable software solutions</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h3>Community Impact</h3>
+                                <p>We believe technology should serve people and communities</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-rocket"></i>
+                            <div>
+                                <h3>Continuous Innovation</h3>
+                                <p>We stay ahead of the curve in technology and digital trends</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo" style="color: white; margin-bottom: 20px;">
+                        <div class="circle-logo">
+  <img src="/WhatsApp Image 2026-02-09 at 9.06.59 PM.jpeg" alt="Logo">
+</div>
+                        <div class="logo-text"><span>Drishtikon</span></div>
+                    </div>
+                    <p>Creating technology with a unique perspective. Bridging software development with digital influence to build impactful solutions.</p>
+                    <div class="social-links">
+                        <a href="https://x.com/drishtikon3171"><i class="fa-brands fa-x"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#founder">Founder</a></li>
+                        <li><a href="#company">Company</a></li>
+                        <li><a href="#values">Values</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Software Development</a></li>
+                        <li><a href="#">Digital Strategy</a></li>
+                        <li><a href="#">Tech Consulting</a></li>
+                        <li><a href="#">Influencer Marketing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> rishabhyadav3171@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +91-8417939524</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Noida(UP),Pin-201301 India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026  Drishtikon. All rights reserved. | Founded by Rishabh Yadav</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Role cards animation on scroll
+        const roleCards = document.querySelectorAll('.role-card');
+        
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Initially set opacity for animation
+        roleCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Add current year to copyright
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.querySelector('.copyright p');
+            if(yearSpan) {
+                yearSpan.innerHTML = yearSpan.innerHTML.replace('2023', new Date().getFullYear());
+            }
+        });
+    </script>
+</body>
+</html>
